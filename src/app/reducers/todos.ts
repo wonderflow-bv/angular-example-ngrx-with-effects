@@ -10,29 +10,40 @@ export const CHANGE_STATE = 'CHANGE_STATE';
 
 
 
-const initialState = [];
+const initialState = {
+    pending: false,
+    data: [],
+    error: null,
+};
 
 
 export const todos = (state = initialState, action: Action): any => {
     switch (action.type) {
         case ADD_TODO: {
             let newTodo = action.payload;
-            return [...state, Object.assign({}, newTodo)];
+            return Object.assign({}, state, {
+                data: [...state.data, Object.assign({}, newTodo)]
+            })
         }
         case REMOVE_TODO: {
             let todoId = action.payload.id;
-            return state.filter(e => { return e.id !== todoId });
+            return Object.assign({}, state, {
+                data: state.data.filter(e => { return e.id !== todoId }),
+            });
         }
         case CHANGE_STATE: {
             let newState: boolean = action.payload.state;
             let todoId = action.payload.id;
-            let todos = state.map(t => {
-                if (t.id === todoId) {
-                    t.state = newState;
-                }
-                return t;
+
+            Object.assign({}, state, {
+                data: state.data.map(t => {
+                    if (t.id === todoId) {
+                        t.state = newState;
+                    }
+                    return t;
+                })
             });
-            return todos;
+            return state;
         }
         default:
             return state;

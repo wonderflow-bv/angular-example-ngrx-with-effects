@@ -1,3 +1,6 @@
-<ul *ngFor="let todo of todos">
+<p *ngIf="todos.error">{{todos.error}}</p>
+<div *ngIf="todos.pending">Pending...</div>
+
+<ul *ngFor="let todo of todos.data">
   <app-todo [todo]="todo"></app-todo>
 </ul>
