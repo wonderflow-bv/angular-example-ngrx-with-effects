@@ -9,7 +9,10 @@ import { TodoComponent } from './components/todo/todo.component';
 import { TodosContainerComponent } from './components/todos-container/todos-container.component';
 
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { todos } from './reducers/todos';
+import { TodosEffects } from './effects/todos';
+import { TodosService } from './services/todos.service';
 
 @NgModule({
   declarations: [
@@ -17,14 +20,15 @@ import { todos } from './reducers/todos';
     TodosComponent,
     AddTodoComponent,
     TodoComponent,
-    TodosContainerComponent
+    TodosContainerComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     StoreModule.provideStore({ todos, }),
+    EffectsModule.run(TodosEffects),
   ],
-  providers: [],
+  providers: [TodosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
