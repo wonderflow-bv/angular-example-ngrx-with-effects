@@ -4,5 +4,7 @@ export class Todo {
     text: string;
     done: boolean;
 
-    constructor() { }
+    constructor(text: string) {
+        this.text = text;
+    }
 }
