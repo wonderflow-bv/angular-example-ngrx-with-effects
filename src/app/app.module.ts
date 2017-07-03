@@ -13,6 +13,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { todos } from './reducers/todos';
 import { TodosEffects } from './effects/todos';
 import { TodosService } from './services/todos.service';
+import { AtomicComponentComponent } from './higher-order-components/atomic-component/atomic-component.component';
+import { HigherOrderComponentComponent } from './higher-order-components/higher-order-component/higher-order-component.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { TodosService } from './services/todos.service';
     AddTodoComponent,
     TodoComponent,
     TodosContainerComponent,
+    AtomicComponentComponent,
+    HigherOrderComponentComponent,
   ],
   imports: [
     BrowserModule,
