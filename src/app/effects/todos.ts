@@ -8,7 +8,6 @@ import { GET_TODOS, GET_TODOS_SUCCESS, GET_TODOS_FAILURE } from '../reducers/tod
 @Injectable()
 export class TodosEffects {
 
-  constructor(private actions$: Actions, private todosService: TodosService) { }
 
   @Effect() getTodos$ = this.actions$
     .ofType(GET_TODOS)
@@ -23,5 +22,8 @@ export class TodosEffects {
           payload: err
         }))
     });
+
+  constructor(private actions$: Actions, private todosService: TodosService) { }
+
 
 }

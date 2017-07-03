@@ -10,7 +10,7 @@ export class TodosService {
   constructor() { }
 
   getTodos() {
-    const todos = [new Todo('todo 1'), new Todo('todo 2'), new Todo('todo 3')];
+    const todos = [new Todo('todo 1' + Math.random()), new Todo('todo 2'), new Todo('todo 3')];
     return Observable.timer(1000).mapTo(todos);
   }
 
