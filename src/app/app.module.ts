@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { TodosComponent } from './components/todos/todos.component';
@@ -24,15 +25,19 @@ import { HigherOrderComponentComponent } from './higher-order-components/higher-
     TodoComponent,
     TodosContainerComponent,
     AtomicComponentComponent,
-    HigherOrderComponentComponent,
+    HigherOrderComponentComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     StoreModule.provideStore({ todos, }),
     EffectsModule.run(TodosEffects),
+    StoreDevtoolsModule.instrumentOnlyWithExtension({
+      maxAge: 5
+    })
   ],
   providers: [TodosService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
