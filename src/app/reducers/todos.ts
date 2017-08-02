@@ -9,66 +9,69 @@ export const GET_TODOS = 'GET_TODOS';
 export const GET_TODOS_SUCCESS = 'GET_TODOS_SUCCESS';
 export const GET_TODOS_FAILURE = 'GET_TODOS_FAILURE';
 
-
-// const initialState = [];
-
-
-
 const initialState = {
-    pending: false,
-    data: [],
-    error: null,
+  pending: false,
+  data: [],
+  error: null,
 };
 
+export function todos(state = initialState, action: Action) {
 
-export const todos = (state = initialState, action: Action): any => {
-    switch (action.type) {
-        case ADD_TODO: {
-            let newTodo = action.payload;
-            return Object.assign({}, state, {
-                data: [...state.data, Object.assign({}, newTodo)]
-            })
-        }
-        case REMOVE_TODO: {
-            let todoId = action.payload.id;
-            return Object.assign({}, state, {
-                data: state.data.filter(e => { return e.id !== todoId }),
-            });
-        }
-        case CHANGE_STATE: {
-            let newState: boolean = action.payload.state;
-            let todoId = action.payload.id;
+  switch (action.type) {
 
-            Object.assign({}, state, {
-                data: state.data.map(t => {
-                    if (t.id === todoId) {
-                        t.state = newState;
-                    }
-                    return t;
-                })
-            });
-            return state;
-        }
-        case GET_TODOS: {
-            return Object.assign({}, {
-                pending: true
-            });
-        }
-        case GET_TODOS_SUCCESS: {
-            return Object.assign({}, state, {
-                data: action.payload,
-                pending: false,
-            });
-        }
-        case GET_TODOS_FAILURE: {
-            return Object.assign({}, state, {
-                error: action.payload,
-                pending: false
-            })
-        }
-        default:
-            return state;
+    case ADD_TODO: {
+      let newTodo = action.payload;
+      return Object.assign({}, state, {
+        data: [...state.data, Object.assign({}, newTodo)]
+      })
     }
+
+    case REMOVE_TODO: {
+      let todo = action.payload;
+      return Object.assign({}, state, {
+        data: state.data.filter(e => { return e.text !== todo.text }),
+      });
+    }
+
+    case CHANGE_STATE: {
+      let newState: boolean = action.payload.state;
+      let todoId = action.payload.id;
+
+      Object.assign({}, state, {
+        data: state.data.map(t => {
+          if (t.id === todoId) {
+            t.state = newState;
+          }
+          return t;
+        })
+      });
+      return state;
+    }
+
+    case GET_TODOS: {
+      return Object.assign({}, {
+        pending: true
+      });
+    }
+
+    case GET_TODOS_SUCCESS: {
+      return Object.assign({}, state, {
+        data: action.payload,
+        pending: false,
+      });
+    }
+
+    case GET_TODOS_FAILURE: {
+      return Object.assign({}, state, {
+        error: action.payload,
+        pending: false
+      })
+    }
+
+    default:
+
+    return state;
+  }
 }
 
 

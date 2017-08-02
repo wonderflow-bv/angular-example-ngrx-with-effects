@@ -2,5 +2,5 @@
 <div *ngIf="todos.pending">Pending...</div>
 
 <ul *ngFor="let todo of todos.data">
-  <app-todo [todo]="todo"></app-todo>
+  <app-todo [todo]="todo"></app-todo> <button (click)="removeTodo.emit(todo)">Remove Todo</button>
 </ul>

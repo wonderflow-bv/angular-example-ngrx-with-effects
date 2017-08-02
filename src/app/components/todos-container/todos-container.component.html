@@ -1,2 +1,7 @@
-<app-todos [todos]="todos|async"></app-todos>
-<app-add-todo (addTodo)="addTodo($event)"></app-add-todo>
+<app-todos
+  [todos]="todos|async"
+  (removeTodo)="removeTodo($event)"
+></app-todos>
+<app-add-todo
+  (addTodo)="addTodo($event)"
+></app-add-todo>

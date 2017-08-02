@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { Todo } from '../../models/todo.model';
-import { ADD_TODO, GET_TODOS } from '../../reducers/todos';
+import { ADD_TODO, REMOVE_TODO, GET_TODOS } from '../../reducers/todos';
 
 @Component({
   selector: 'app-todos-container',
@@ -16,8 +16,7 @@ export class TodosContainerComponent implements OnInit {
 
   constructor(private store: Store<any>) {
     this.getTodos();
-    this.todos = store.select("todos");
-
+    this.todos = store.select('todos');
   }
 
   ngOnInit() {
@@ -29,6 +28,14 @@ export class TodosContainerComponent implements OnInit {
       payload: newTodo,
     });
   }
+
+  removeTodo(todo: Todo) {
+    this.store.dispatch({
+      type: REMOVE_TODO,
+      payload: todo,
+    });
+  }
+
   getTodos() {
     this.store.dispatch({
       type: GET_TODOS

@@ -24,6 +24,4 @@ export class TodosEffects {
     });
 
   constructor(private actions$: Actions, private todosService: TodosService) { }
-
-
 }
